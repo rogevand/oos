@@ -1,0 +1,9 @@
+{% if recent_services_list %}
+    <ul>
+    {% for service in recent_services_list %}
+        <li><a href="/order/{{ service.id }}/">{{ service.theme }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No services are available.</p>
+{% endif %}

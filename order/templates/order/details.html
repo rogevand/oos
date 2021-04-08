@@ -1,0 +1,6 @@
+<h1>{{ service.theme }}</h1>
+<ul>
+{% for musician in service.musicians.all %}
+    <li>{{ musician.name }}</li>
+{% endfor %}
+</ul>
