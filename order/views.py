@@ -16,8 +16,8 @@ def history(request):
         'recent_services_list': recent_services_list,
     }
     return render(request, 'order/history.html', context)
-    
-def addservice(request):
+
+def addmusician(request):
     #service = get_object_or_404(Service, pk=service_id)
     data = Musician()
     if request.method == 'POST':
@@ -33,7 +33,24 @@ def addservice(request):
         form = NameForm()
 
     context = {'form': form, 'data': data}
+    return render(request, 'order/addmusician.html', context)
+
+def addservice(request):
+    data = Service()
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            #this is the data returned by the post request
+            #Musician.objects.create(name=str(form.cleaned_data['post']), instrument1='', instrument2='', vocalYN=True)
+            Service.objects.create(date, leader, theme, prelude_time, sermon, announcements, musicians)
+            
+            print(data)
+    else:
+        form = NameForm()
+
+    context = {'form': form, 'data': data}
     return render(request, 'order/addservice.html', context)
+
 
 
 def great(request):

@@ -1,9 +1,8 @@
 {% extends "order/base.html" %}
 {% block content %}
-
 {{ service }}
 <br>
-<form action="/order/addservice/" method="post">
+<form action="/order/addmusician/" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
