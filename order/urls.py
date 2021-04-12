@@ -9,6 +9,5 @@ urlpatterns = [
     path('addmusician/', views.addmusician, name='addmusician'),
     path('addservice/', views.addservice, name='addservice'),
     path('great/', views.great, name='great'),
-
     
 ]
