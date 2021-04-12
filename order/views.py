@@ -38,7 +38,7 @@ def addmusician(request):
 def addservice(request):
     data = ServiceForm()
     if request.method == 'POST':
-        form = NameForm(request.POST)
+        form = ServiceForm(request.POST)
         if form.is_valid():
             #this is the data returned by the post request
             #Musician.objects.create(name=str(form.cleaned_data['post']), instrument1='', instrument2='', vocalYN=True)
@@ -48,9 +48,10 @@ def addservice(request):
             prelude_time = form.cleaned_data['prelude_time']
             sermon = form.cleaned_data['sermon']
             announcements = form.cleaned_data['announcements']
-            musicians = form.cleaned_data['musicians']
+            musician1 = form.cleaned_data['musician1']
+            musician2 = form.cleaned_data['musician2']
 
-            Service.objects.create(date, leader, theme, prelude_time, sermon, announcements, musicians)
+            Service.objects.create(date, leader, theme, prelude_time, sermon, announcements, musician1, musician2)
             
             print(data)
     else:

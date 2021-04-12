@@ -11,4 +11,5 @@ class ServiceForm(forms.Form):
     prelude_time = forms.CharField(label='prelude_time', max_length=100)
     sermon= forms.CharField(label='sermon', max_length=100)
     announcements = forms.CharField(label='announcements', max_length=100)
-    musicains = forms.CharField(label='musicians', max_length=100)
+    musician1 = forms.CharField(label='musician1', max_length=100)
+    musician2 = forms.CharField(label='musician2', max_length=100)
