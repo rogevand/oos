@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Service
+from .models import Service, Musician
 from django.template import context
 from .forms import NameForm
 
@@ -17,15 +17,20 @@ def history(request, service_id):
 
 def addservice(request):
     #service = get_object_or_404(Service, pk=service_id)
+    data = Musician()
     if request.method == 'POST':
         form = NameForm(request.POST)
         if form.is_valid():
-            pass
-            # redirect to a new URL:
-            #return HttpResponseRedirect('/thanks/')
+            #this is the data returned by the post request
+            Musician.objects.create(name=str(form.cleaned_data['post']), instrument1='', instrument2='', vocalYN=True)
+            #data.name = 
+            #data.save()
+            
+            print(data)
     else:
         form = NameForm()
-    context = {'form': form}
+
+    context = {'form': form, 'data': data}
     return render(request, 'order/addservice.html', context)
 
 
