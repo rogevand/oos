@@ -1,13 +1,6 @@
 
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
+{{ block addtext }}this is actually adding a musician
 
-</head> 
-<body> 
 {{ service }}
 <br>
 <form action="/order/addservice/" method="post">
@@ -16,6 +9,4 @@
     <input type="submit" value="Submit">
 </form>
 
-
-</body> 
-</html> 
+{{ endblock addtext }}

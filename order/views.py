@@ -4,17 +4,19 @@ from .models import Service, Musician
 from django.template import context
 from .forms import NameForm
 
+def base(request):
 
-def index(request):
+    return render(request, 'order/base.html')
+
+
+    
+def history(request):
     recent_services_list = Service.objects.order_by('date')[:5]
     context = {
         'recent_services_list': recent_services_list,
     }
-    return render(request, 'order/index.html', context)
-
-def history(request, service_id):
-    return  HttpResponse("you are looking at the %s service " % service_id)
-
+    return render(request, 'order/history.html', context)
+    
 def addservice(request):
     #service = get_object_or_404(Service, pk=service_id)
     data = Musician()
