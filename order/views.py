@@ -1,3 +1,4 @@
+from django.db.models.fields import DateField
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Service, Musician
@@ -42,16 +43,18 @@ def addservice(request):
         if form.is_valid():
             #this is the data returned by the post request
             #Musician.objects.create(name=str(form.cleaned_data['post']), instrument1='', instrument2='', vocalYN=True)
-            date  = form.cleaned_data['date']
-            leader = form.cleaned_data['leader']
-            theme =  form.cleaned_data['theme']
-            prelude_time = form.cleaned_data['prelude_time']
-            sermon = form.cleaned_data['sermon']
-            announcements = form.cleaned_data['announcements']
-            musician1 = form.cleaned_data['musician1']
-            musician2 = form.cleaned_data['musician2']
+            Service.date  = form.cleaned_data['date']
+            Service.leader = form.cleaned_data['leader']
+            Service.theme =  form.cleaned_data['theme']
+            Service.prelude_time = form.cleaned_data['prelude_time']
+            Service.sermon = form.cleaned_data['sermon']
+            Service.announcements = form.cleaned_data['announcements']
+            # musicians need to be a dropdown selection
+            Service.musicians = form.cleaned_data['musician1']
+            Service.musicians = form.cleaned_data['musician2']
+            Service.save()
 
-            Service.objects.create(date, leader, theme, prelude_time, sermon, announcements, musician1, musician2)
+            #Service.objects.create(date, leader, theme, prelude_time, sermon, announcements, musician1, musician2)
             
             print(data)
     else:

@@ -5,7 +5,7 @@ class Musician(models.Model):
     name = models.CharField(max_length=50)
     instrument1 = models.CharField(max_length=50, null=True, blank=True)
     instrument2 = models.CharField(max_length=50, null=True, blank=True)
-    vocalYN = models.BooleanField()
+    vocalYN = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -19,14 +19,14 @@ class Hymn(models.Model):
         return self.name
 
 class Service(models.Model):
-    date = models.DateField()
-    leader =  models.CharField(max_length=50)
-    theme = models.CharField(max_length=50)
-    prelude_time = models.TimeField()
-    sermon = models.CharField(max_length=50)
-    announcements = models.CharField(max_length=50)
-    musicians = models.ManyToManyField(Musician)
-    musicians = models.ManyToManyField(Hymn)
+    date = models.CharField(max_length=50, null=True, blank=True)
+    leader =  models.CharField(max_length=50, null=True, blank=True)
+    theme = models.CharField(max_length=50, null=True, blank=True)
+    prelude_time = models.CharField(max_length=50, null=True, blank=True)
+    sermon = models.CharField(max_length=50, null=True, blank=True)
+    announcements = models.CharField(max_length=50, null=True, blank=True)
+    musicians = models.ManyToManyField(Musician, blank=True)
+    hymns = models.ManyToManyField(Hymn, blank=True)
 
     def __str__(self):
         return str(self.date)
