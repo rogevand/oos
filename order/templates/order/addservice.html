@@ -1,5 +1,5 @@
-
-{% block addtext %}this is actually adding a musician
+{% extends "order/base.html" %}
+{% block content %}this is actually adding a musician
 
 {{ service }}
 <br>
@@ -9,5 +9,5 @@
     <input type="submit" value="Submit">
 </form>
 
-{% endblock addtext %}
+{% endblock content %}
 
