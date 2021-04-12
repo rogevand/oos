@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Service, Musician
 from django.template import context
-from .forms import NameForm
+from .forms import NameForm, ServiceForm
 
 def base(request):
 
@@ -36,23 +36,31 @@ def addmusician(request):
     return render(request, 'order/addmusician.html', context)
 
 def addservice(request):
-    data = Service()
+    data = ServiceForm()
     if request.method == 'POST':
         form = NameForm(request.POST)
         if form.is_valid():
             #this is the data returned by the post request
             #Musician.objects.create(name=str(form.cleaned_data['post']), instrument1='', instrument2='', vocalYN=True)
+            date  = form.cleaned_data['date']
+            leader = form.cleaned_data['leader']
+            theme =  form.cleaned_data['theme']
+            prelude_time = form.cleaned_data['prelude_time']
+            sermon = form.cleaned_data['sermon']
+            announcements = form.cleaned_data['announcements']
+            musicians = form.cleaned_data['musicians']
+
             Service.objects.create(date, leader, theme, prelude_time, sermon, announcements, musicians)
             
             print(data)
     else:
-        form = NameForm()
+        form = ServiceForm()
 
     context = {'form': form, 'data': data}
     return render(request, 'order/addservice.html', context)
 
 
-
 def great(request):
     context = {great: "great"}
     return render(request, 'order/great.html', context)
+
