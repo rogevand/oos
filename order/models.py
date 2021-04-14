@@ -26,7 +26,7 @@ class Service(models.Model):
     sermon = models.CharField(max_length=50)
     announcements = models.CharField(max_length=50)
     musicians = models.ManyToManyField(Musician)
-    musicians = models.ManyToManyField(Hymn)
+    hymns = models.ManyToManyField(Hymn)
 
     def __str__(self):
         return str(self.date)
