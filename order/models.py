@@ -18,6 +18,7 @@ class Hymn(models.Model):
     def __str__(self):
         return self.name
 
+
 class Service(models.Model):
     date = models.CharField(max_length=50, null=True, blank=True)
     leader =  models.CharField(max_length=50, null=True, blank=True)
@@ -25,8 +26,10 @@ class Service(models.Model):
     prelude_time = models.CharField(max_length=50, null=True, blank=True)
     sermon = models.CharField(max_length=50, null=True, blank=True)
     announcements = models.CharField(max_length=50, null=True, blank=True)
-    musicians = models.ManyToManyField(Musician, blank=True)
-    hymns = models.ManyToManyField(Hymn, blank=True)
+    #there are two pianists and a special and 3 hymns
+    musician = models.ManyToManyField(Musician, blank=True)
+    hymn = models.ManyToManyField(Hymn, blank=True)
+    special = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return str(self.date)

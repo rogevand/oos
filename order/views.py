@@ -6,8 +6,6 @@ from django.template import context
 from .forms import NameForm, ServiceForm
 from datetime import date
 
-
-
 def base(request):
 
     return render(request, 'order/base.html')
@@ -42,26 +40,39 @@ def addservice(request):
     if request.method == 'POST':
         form = ServiceForm(request.POST)
         if form.is_valid():
+
+            #dont forget to add hymns
+            # for date, have it auto populate to the coming sunday
             #this is the data returned by the post request
-            #Musician.objects.create(name=str(form.cleaned_data['post']), instrument1='', instrument2='', vocalYN=True)
             Service.date  = form.cleaned_data['date']
+
+            #leader also needs to be a dropdown
             Service.leader = form.cleaned_data['leader']
             Service.theme =  form.cleaned_data['theme']
             Service.prelude_time = form.cleaned_data['prelude_time']
+            Service.hymn = form.cleaned_data['hymn_1']
+            Service.hymn = form.cleaned_data['hymn_2']
+            Service.hymn = form.cleaned_data['hymn_3']
             Service.sermon = form.cleaned_data['sermon']
             Service.announcements = form.cleaned_data['announcements']
+
             # musicians need to be a dropdown selection
-            Service.musicians = form.cleaned_data['musician1']
-            Service.musicians = form.cleaned_data['musician2']
+            Service.musician = form.cleaned_data['pianist_1']
+            Service.musician = form.cleaned_data['pianist_2']
             Service.save()
+            
 
             #Service.objects.create(date, leader, theme, prelude_time, sermon, announcements, musician1, musician2)
             
             print(data)
     else:
         form = ServiceForm()
-
-    context = {'form': form, 'data': data}
+        
+    context = { 
+        'form': form, 
+        'data': data
+ 
+        }
     return render(request, 'order/addservice.html', context)
 
 

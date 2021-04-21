@@ -11,10 +11,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <form col col-sm-6 action="/order/addservice/" method="post">
-        {% csrf_token %}
+
+            {% csrf_token %}
             <div class="form-group row ">
                 <label for="serviceDate" class="col-form-label col-sm-6">Date</label>
-                {{ form.date }}
+<!--                 <input type="date" class="form-control col col-sm-6" id="serviceDate">
+ -->            {{ form.date }}
             </div>
             <div class="form-group row">
                 <label for="serviceTheme" class="col-form-label col-sm-6">Service Theme</label>
@@ -29,18 +31,6 @@
                 {{ form.prelude_time }}
             </div>
             <div class="form-group row">
-                <label for="serviceHymn_1" class="col-form-label col-sm-6">Hymn 1</label>
-                {{ form.hymn_1 }}
-            </div>
-            <div class="form-group row">
-                <label for="serviceHymn_2" class="col-form-label col-sm-6">Hymn 2</label>
-                {{ form.hymn_2 }}
-            </div>
-            <div class="form-group row">
-                <label for="serviceHymn_3" class="col-form-label col-sm-6">Hymn 3</label>
-                {{ form.hymn_3 }}
-            </div>
-            <div class="form-group row">
                 <label for="serviceAnnouncements" class="col-form-label col-sm-6">Announcements</label>
                 {{ form.announcements }}
             </div>
@@ -48,14 +38,16 @@
                 <label for="serviceSermon" class="col-form-label col-sm-6">Sermon</label>
                 {{ form.sermon }}
             </div>
-            <div class="form-group row">
-                <label for="serviceMusician1" class="col-form-label col-sm-6">Musician One</label>
-                {{form.musician1 }}
-            </div>
-            <div class="form-group row">
-                <label for="serviceMusician2" class="col-form-label col-sm-6">Musician Two</label>
-                {{ form.musician2 }}
-            </div>
+            <!-- add musician1 and 2 dropdowns -->
+            <form method="POST">
+                <select name="musicians">
+                {% for entry in musicians %}
+                    <option value="{{ entry.id }}">{{ entry.name }}</option>
+                {% endfor %}
+                </select>
+            </form>
+                
+           
             <input type="submit" value="Submit">
         </form>
     </div>
