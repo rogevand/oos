@@ -1,5 +1,6 @@
 {% extends "order/base.html" %}
 {% block content %}
+{% load static %}
 
 {{ service }}
 <!-- <br>
@@ -44,9 +45,10 @@
                 {{ form.sermon }}
             </div>
             <!-- add musician1 and 2 dropdowns -->
-            <form method="POST">
-                <select name="musicians">
-                {% for entry in musicians %}
+            <form method="POST"> Pianist 1
+                <select name="musicians" >
+                <option value="" disabled selected>Select</option>
+                {% for entry in pianist_1 %}
                     <option value="{{ entry.id }}">{{ entry.name }}</option>
                 {% endfor %}
                 </select>

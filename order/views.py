@@ -37,10 +37,11 @@ def addmusician(request):
 
 def addservice(request):
     data = ServiceForm()
+    musicians = Musician.objects.all()
     if request.method == 'POST':
         form = ServiceForm(request.POST)
         if form.is_valid():
-
+            selected_item = get_object_or_404(musicians, pk=request.POST.get('musician_id'))
             #dont forget to add hymns
             # for date, have it auto populate to the coming sunday
             #this is the data returned by the post request
